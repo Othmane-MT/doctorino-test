@@ -1,0 +1,30 @@
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i");
+
+// Variables
+@import "variables";
+
+// Bootstrap
+// @import '~bootstrap/scss/bootstrap';
+
+// Import BS Admin 2
+@import "~startbootstrap-sb-admin-2/css/sb-admin-2.min.css";
+@import "~startbootstrap-sb-admin-2/vendor/fontawesome-free/css/all.min.css";
+@import "~startbootstrap-sb-admin-2/vendor/datatables/dataTables.bootstrap4.min.css";
+@import "~gijgo/css/gijgo.min.css";
+
+
+.font-size-12 {
+    font-size: 12px !important;
+}
+
+body::after{
+    content: "";
+    z-index: 1000;
+    background-color: black;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
