@@ -18933,8 +18933,52 @@ footer {
     width: 100%;
     display: flex;
     justify-content: space-between;
+    padding: 10px;
+    padding-bottom: 7px !important ;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+    margin-bottom: 5px;
 }
 .btns-left {
     display: flex;
 }
-.btns-right
+.btns-left-right {
+    font-size: 0;
+    margin-right: 8px;
+}
+.arrow {
+    margin: 0;
+    font-size: 15px !important;
+    font-weight: 600;
+}
+.btns-left button {
+    height: 30px;
+    background-color: #4e73df;
+    color: white;
+    border: none;
+    outline: none;
+}
+.button-today {
+    border-radius: 10px !important;
+}
+.btns-right ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+}
+.btns-right ul li button {
+    border: 0.5px solid rgba(0, 0, 0, 0.1);
+    outline: none;
+    background-color: #4e73df;
+    font-weight: 600;
+    font-size: 15px;
+    color: white;
+}
+.btns-right ul li .active {
+    /* background-color: rgba(78, 115, 223, 1) !important; */
+    background-color: rgba(70, 110, 220, 0.6);
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.calendar {
+    position: relative;
+}

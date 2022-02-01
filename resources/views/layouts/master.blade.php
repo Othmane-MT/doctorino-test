@@ -24,20 +24,9 @@
             rel="stylesheet"
             href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         />
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.css"
-        />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.js"></script>
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
-        />
+      
         <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
-          
+
         <!-- Custom styles for this template-->
         <script>
             $(document).on("click", "#create-appointment-btn", function(event) {
@@ -65,8 +54,166 @@
                 });
             });
         </script>
-
+   
         <link href="{{ asset('css/app.css') }}" rel="stylesheet" />
+        <link href="{{ asset('css/main.css') }}" rel="stylesheet" />
+        <script src="{{ asset('js/main.js') }}"></script>
+        <script>
+
+            document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('calendar');
+            var dt=new Date();
+            var year=dt.getFullYear();
+            var day=dt.getDate();
+            if(day<10){
+                day='0'+day;
+            }
+            var month=dt.getMonth()+1;
+            if(month<10){
+                month='0'+month
+            }
+            var currentDate=`${year}-${month}-${day}`;
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+            height: '100%',
+            expandRows: true,
+            slotMinTime: '08:00',
+            slotMaxTime: '20:00',
+            headerToolbar: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+            },
+            initialView: 'dayGridMonth',
+            initialDate: currentDate,
+            navLinks: true, // can click day/week names to navigate views
+            editable: true,
+            selectable: true,
+            selectHelper:true,
+            select:function(start,end,allDay){
+                // to Click in the calendar
+            },
+            eventDrop:function(event,delta){
+                // To Update an appointment
+            },
+            eventClick:function(event){
+                // to Delete an appointment
+            },
+            nowIndicator: true,
+            dayMaxEvents: true, // allow "more" link when too many events
+            // events must be fethed from database 
+            events: [
+                {
+                    title:"tiitle",
+                    start:"2022-02-02"
+                },
+                {
+                    title:"todaaay's event",
+                    start:currentDate,
+                },
+                {
+                title: 'All Day Event',
+                start: '2020-09-01',
+                },
+                {
+                title: 'Long Event',
+                start: '2020-09-07',
+                end: '2020-09-10'
+                },
+                {
+                groupId: 999,
+                title: 'Repeating Event',
+                start: '2020-09-09T16:00:00'
+                },
+                {
+                groupId: 999,
+                title: 'Repeating Event',
+                start: '2020-09-16T16:00:00'
+                },
+                {
+                title: 'Conference',
+                start: '2020-09-11',
+                end: '2020-09-13'
+                },
+                {
+                title: 'Meeting',
+                start: '2020-09-12T10:30:00',
+                end: '2020-09-12T12:30:00'
+                },
+                {
+                title: 'Lunch',
+                start: '2020-09-12T12:00:00'
+                },
+                {
+                title: 'Meeting',
+                start: '2020-09-12T14:30:00'
+                },
+                {
+                title: 'Happy Hour',
+                start: '2022-02-03T17:30:00'
+                },
+                {
+                title: 'Dinner',
+                start: '2020-09-12T20:00:00'
+                },
+                {
+                title: 'Birthday Party',
+                start: '2020-09-13T07:00:00'
+                },
+                {
+                title: 'Click for Google',
+                url: 'http://google.com/',
+                start: '2022-02-10T18:45:00'
+                }
+            ]
+            });
+
+            
+
+            calendar.render();
+        });
+        const SITEURL="http://localhost:8000/appointment/all"
+        $.ajax({
+                url:SITEURL,
+                headers:{
+                    "accept":"application/json",
+                    "Access-Control-Allow-Origin":"*",
+                    'Access-Control-Allow-Credentials':'true'
+                },
+                method:'GET',
+                success:function(data){
+                    var obj=jQuery.parseJSON(data);
+                    console.log("hello",obj)
+                }
+            })
+       
+
+        </script>
+        <style>
+
+            .calendar{
+                display: block;
+                position: relative;
+                height: 100vh;
+            }
+            #calendar-container {
+                position:absolute;
+                top: 0px;
+                left: 0px;
+                right: 0;
+                bottom: 0;
+             }
+
+            .fc-header-toolbar {
+                /*
+                the calendar will be butting up against the edges,
+                but let's scoot in the header's buttons
+                */
+                padding-top: 1em;
+                padding-left: 1em;
+                padding-right: 1em;
+            }
+
+        </style>
         @yield('header')
     </head>
     <body id="page-top">
@@ -522,9 +669,13 @@
             </div>
         </div>
 
+
+
+      
        
         <!-- Bootstrap core JavaScript-->
         <script src="{{ asset('js/app.js') }}"></script>
         @yield('footer')
     </body>
+         
 </html>

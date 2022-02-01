@@ -31,50 +31,15 @@
          </div>
       </div>
    </div>
-   <div class="calendar">
-      <div class="calendar-header">
-         
-            <div class="btns-left" >
-                  <div class="btns-left-right" >
-                     <button class="button-left" >
-                        <i class="fas fa-arrow-left" ></i>
-                     </button>
-                     <button class="button-right" >
-                        <i class="fas fa-arrow-right" ></i>
-                     </button>
-                  </div>
-                  <button class="button-today">
-                     today
-                  </button>
-            </div>
-
-            <div class="calendar-title" > 
-               <h2>
-                  September 2019
-               </h2>
-            </div>
-            <div class="btns-right" >
-               <ul>
-                  <li>
-                     <button>
-                        month
-                     </button>
-                  </li>
-                  <li>
-                     <button>
-                        week
-                     </button>
-                  </li>
-                  <li>
-                     <button>
-                        day
-                     </button>
-                  </li>
-               </ul>
-            </div>
+   {{-- Calendar --}}
+   <div class="calendar" >
+      <div id='calendar-container'>
+         <div id='calendar'></div>
       </div>
-      <div class="calendar-body">
-      </div>
+   </div>
+    
+   {{-- End Calendar --}}
+    </div>
    </div>
 </div>
 <!--EDIT Appointment Modal-->
