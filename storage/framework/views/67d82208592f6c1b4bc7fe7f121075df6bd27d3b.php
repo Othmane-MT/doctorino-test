@@ -19,6 +19,8 @@
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
           <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
 
         <link
             rel="stylesheet"
@@ -88,12 +90,14 @@
             navLinks: true, // can click day/week names to navigate views
             editable: true,
             selectable: true,
-            selectHelper:true,
             select:function(start,end,allDay){
-                // to Click in the calendar
+                // to Click in the calendar for adding an appointment
             },
             eventDrop:function(event,delta){
-                alert("You updated the event")
+                // To Update an appointment
+            },
+            eventClick:function(event){
+                // to Delete an appointment
             },
             nowIndicator: true,
             dayMaxEvents: true, // allow "more" link when too many events
@@ -169,19 +173,28 @@
             calendar.render();
         });
         const SITEURL="http://localhost:8000/appointment/all"
-        $.ajax({
-                url:SITEURL,
-                headers:{
-                    "accept":"application/json",
-                    "Access-Control-Allow-Origin":"*",
-                    'Access-Control-Allow-Credentials':'true'
-                },
-                method:'GET',
-                success:function(data){
-                    var obj=jQuery.parseJSON(data);
-                    console.log("hello",obj)
-                }
-            })
+        // axios({
+        //     method:'get',
+        //     url:SITEURL,
+        // }).then(function(response){
+        //     console.log(response)
+        // }).catch(function(error){
+        //     console.log("error : "+error)
+        // })
+
+        //  axios.get(SITEURL).then(res=>{
+        //     if(res.status==200){
+        //         console.log(res)
+        //     }
+        //     }).catch(err=>{
+        //         console.log(err)
+        //     });
+        const req = async () => {
+            const response = await axios.get('https://dog.ceo/api/breeds/list/all')
+            console.log(response)
+        }
+        req()
+     
        
 
         </script>

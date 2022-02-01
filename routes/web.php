@@ -46,7 +46,7 @@ Route::get('/appointment/checkslots/{id}','AppointmentController@checkslots')->w
 Route::get('/appointment/delete/{id}','AppointmentController@destroy')->where('id', '[0-9]+');
 Route::post('/appointment/edit', 'AppointmentController@store_edit')->name('appointment.store_edit');
 
-// Appointments_callender
+// Appointments api 
 
 
 

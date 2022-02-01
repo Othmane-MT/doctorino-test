@@ -133,16 +133,6 @@ class AppointmentController extends Controller
 		$appointments = Appointment::all();
 
 		return view('appointment.all', ['appointments' => $appointments]);
-
-        // if($request->ajax()){
-        //     $data=Appointment::whereData('')
-        // }
-
-
-
-        if($request->ajax()){
-            
-        }
 	}
 
 
