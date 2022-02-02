@@ -26,19 +26,35 @@
             <div class="card-header py-3">
                <div class="row">
                 <div class="col-8">
-                    <h6 class="m-0 font-weight-bold text-primary w-75 p-2"><?php echo e(__('sentence.All Patients')); ?></h6>
+                    <h6 class="m-0 font-weight-bold text-primary w-75 p-2">
+                      <?php echo e(__('sentence.All Patients')); ?>
+
+                    </h6>
                 </div>
                 <div class="col-4">
-                  <a href="<?php echo e(route('patient.create')); ?>" class="btn btn-primary float-right"><i class="fa fa-plus"></i> <?php echo e(__('sentence.New Patient')); ?></a>
+                  <a href="<?php echo e(route('patient.create')); ?>" class="btn btn-primary float-right">
+                    <i class="fa fa-plus"></i> 
+                    <?php echo e(__('sentence.New Patient')); ?>
+
+                  </a>
                 </div>
               </div>
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <div class="search-section" id="patient-search" >
+                  <div class="search-input-div" id="patient-input">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" onkeyup="displayRes()" class="search-input" id="search-pat" placeholder="Search...">
+                  </div>
+                  <div id="search-Result" class="search-Result">
+                    
+                  </div>
+                </div>
+                <table class="table table-bordered" id="" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>ID</th>
+                      
                       <th><?php echo e(__('sentence.Patient Name')); ?></th>
                       <th class="text-center"><?php echo e(__('sentence.Phone')); ?></th>
                       <th class="text-center"><?php echo e(__('sentence.Blood Group')); ?></th>
@@ -49,7 +65,7 @@
                   <tbody>
                     <?php $__currentLoopData = $patients; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $patient): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <tr>
-                      <td><?php echo e($patient->id); ?></td>
+                      
                       <td><a href="<?php echo e(url('patient/view/'.$patient->id)); ?>"> <?php echo e($patient->name); ?> </a></td>
                       <td class="text-center"> <?php echo e($patient->Patient->phone); ?> </td>
                       <td class="text-center"> <?php echo e($patient->Patient->blood); ?> </td>

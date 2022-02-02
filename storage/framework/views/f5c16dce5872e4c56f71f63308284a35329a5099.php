@@ -89,6 +89,7 @@
                                     "title":title,
                                     "start":dt+"T"+Appointments[i].time_start+":00",
                                     "end":dt+"T"+Appointments[i].time_end+":00",
+                                    "id":Appointments[i].id,
                                 });
                                  var dt=new Date();
                                     var year=dt.getFullYear();
@@ -114,16 +115,15 @@
                                         initialView: 'dayGridMonth',
                                         initialDate: currentDate,
                                         navLinks: true, // can click day/week names to navigate views
-                                        editable: true,
                                         selectable: true,
-                                        select:function(start,end,allDay){
-                                            // to Click in the calendar for adding an appointment
+                                      
+                                        dateClick:function(info){
+                                            alert('Clicked On : '+ info.dateStr);
                                         },
-                                        eventDrop:function(event,delta){
-                                            // To Update an appointment
-                                        },
-                                        eventClick:function(event){
+                                        
+                                        eventClick:function(info){
                                             // to Delete an appointment
+                                           window.location.href='/appointment/view/'+info.event.id
                                         },
                                         nowIndicator: true,
                                         dayMaxEvents: true, // allow "more" link when too many events
@@ -171,6 +171,18 @@
             }
 
         </style>
+        <script>
+            function displayRes(){
+                var input=document.getElementById('search-pat').value;
+                var element=document.createElement('a');
+                const SITEURL="/patients/api"
+                axios.get(SITEURL).then(function(response){
+                            console.log('hi')
+                        }).catch(function(error){
+                             console.log(error);
+                        });
+            }
+        </script>
         <?php echo $__env->yieldContent('header'); ?>
     </head>
     <body id="page-top">

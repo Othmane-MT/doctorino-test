@@ -37,7 +37,6 @@
          <div id='calendar'></div>
       </div>
    </div>
-    
    
     </div>
    </div>
