@@ -4,6 +4,8 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
+const { default: Axios } = require("axios");
+
 require("./bootstrap");
 
 window.Vue = require("vue");
@@ -143,12 +145,13 @@ var baseURL = "http://localhost/pms/public";
     $(".target").on("change", function() {
         money = document.getElementById("rdvdate").value;
         AddAppointment(money);
+        
     });
 
     function AddAppointment(date) {
         $.ajax(
             {
-                url: baseURL + "/appointment/checkslots/" + date,
+                url: "/appointment/checkslots/" + date,
                 type: "GET",
                 cache: false,
                 dataType: "array",

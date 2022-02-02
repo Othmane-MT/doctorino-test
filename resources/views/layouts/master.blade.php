@@ -61,135 +61,89 @@
         <link href="{{ asset('css/main.css') }}" rel="stylesheet" />
         <script src="{{ asset('js/main.js') }}"></script>
         <script>
-
             document.addEventListener('DOMContentLoaded', function() {
             var calendarEl = document.getElementById('calendar');
-            var dt=new Date();
-            var year=dt.getFullYear();
-            var day=dt.getDate();
-            if(day<10){
-                day='0'+day;
-            }
-            var month=dt.getMonth()+1;
-            if(month<10){
-                month='0'+month
-            }
-            var currentDate=`${year}-${month}-${day}`;
-            var calendar = new FullCalendar.Calendar(calendarEl, {
-            height: '100%',
-            expandRows: true,
-            slotMinTime: '08:00',
-            slotMaxTime: '20:00',
-            headerToolbar: {
-                left: 'prev,next today',
-                center: 'title',
-                right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
-            },
-            initialView: 'dayGridMonth',
-            initialDate: currentDate,
-            navLinks: true, // can click day/week names to navigate views
-            editable: true,
-            selectable: true,
-            select:function(start,end,allDay){
-                // to Click in the calendar for adding an appointment
-            },
-            eventDrop:function(event,delta){
-                // To Update an appointment
-            },
-            eventClick:function(event){
-                // to Delete an appointment
-            },
-            nowIndicator: true,
-            dayMaxEvents: true, // allow "more" link when too many events
-            // events must be fethed from database 
-            events: [
-                {
-                    title:"tiitle",
-                    start:"2022-02-02"
-                },
-                {
-                    title:"todaaay's event",
-                    start:currentDate,
-                },
-                {
-                    title: 'All Day Event',
-                    start: '2020-09-01',
-                },
-                {
-                    title: 'Long Event',
-                    start: '2020-09-07',
-                    end: '2020-09-10'
-                },
-                {
-                    groupId: 999,
-                    title: 'Repeating Event',
-                    start: '2020-09-09T16:00:00'
-                },
-                {
-                    groupId: 999,
-                    title: 'Repeating Event',
-                    start: '2020-09-16T16:00:00'
-                },
-                {
-                    title: 'Conference',
-                    start: '2020-09-11',
-                    end: '2020-09-13'
-                },
-                {
-                    title: 'Meeting',
-                    start: '2020-09-12T10:30:00',
-                    end: '2020-09-12T12:30:00'
-                },
-                {
-                    title: 'Lunch',
-                    start: '2020-09-12T12:00:00'
-                },
-                {
-                    title: 'Meeting',
-                    start: '2020-09-12T14:30:00'
-                },
-                {
-                    title: 'Happy Hour',
-                    start: '2022-02-03T17:30:00'
-                },
-                {
-                    title: 'Dinner',
-                    start: '2020-09-12T20:00:00'
-                },
-                {
-                    title: 'Birthday Party',
-                    start: '2020-09-13T07:00:00'
-                },
-                {
-                    title: 'Click for Google',
-                    url: 'http://google.com/',
-                    start: '2022-02-10T18:45:00'
-                }
-            ]
-            });
+                const SITEURL="/appointment/api"
+                        axios.get(SITEURL).then(function(response){
+                            var Appointments=response.data.appointments;
+                            var Patients=response.data.patients;
+                            var eventsArray=[];
+
+                            for(var i =0;i<Object.keys(Appointments).length;i++){
+                                var title;
+
+                                var date=Appointments[i].date;
+                                date=date.split('-');
+                                var year=date[0];
+                                var month=date[1];
+                                var day=date[2].slice(0,2);
+                                var dt=`${year}-${month}-${day}`;
+
+                                for(var j=0;i< Object.keys(Patients).length;j++){
+                                    if(Patients[j+1].id==Appointments[i].user_id){
+                                        title=Patients[j+1].name;
+                                        break;
+                                    }
+                                };
+                                eventsArray.push({
+                                    "title":title,
+                                    "start":dt+"T"+Appointments[i].time_start+":00",
+                                    "end":dt+"T"+Appointments[i].time_end+":00",
+                                });
+                                 var dt=new Date();
+                                    var year=dt.getFullYear();
+                                    var day=dt.getDate();
+                                    if(day<10){
+                                        day='0'+day;
+                                    }
+                                    var month=dt.getMonth()+1;
+                                    if(month<10){
+                                        month='0'+month
+                                    }
+                                    var currentDate=`${year}-${month}-${day}`;
+                                    var calendar = new FullCalendar.Calendar(calendarEl, {
+                                        height: '100%',
+                                        expandRows: true,
+                                        slotMinTime: '08:00',
+                                        slotMaxTime: '20:00',
+                                        headerToolbar: {
+                                            left: 'prev,next today',
+                                            center: 'title',
+                                            right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+                                        },
+                                        initialView: 'dayGridMonth',
+                                        initialDate: currentDate,
+                                        navLinks: true, // can click day/week names to navigate views
+                                        editable: true,
+                                        selectable: true,
+                                        select:function(start,end,allDay){
+                                            // to Click in the calendar for adding an appointment
+                                        },
+                                        eventDrop:function(event,delta){
+                                            // To Update an appointment
+                                        },
+                                        eventClick:function(event){
+                                            // to Delete an appointment
+                                        },
+                                        nowIndicator: true,
+                                        dayMaxEvents: true, // allow "more" link when too many events
+                                        // events must be fethed from database 
+                                        events:eventsArray
+                                
+                                    });
+                                     calendar.render();
+
+                            }
+
+                        }).catch(function(error){
+                             console.log(error);
+                        });
+           
 
             
 
-            calendar.render();
+           
         });
-        const SITEURL="/appointment/api"
-        axios.get(SITEURL).then(function(response){
-            console.log('DATA : ',response.data);
-            var appointments=[];
-            var Patients=response.data.patients;
-            // response.forEach(patient => {
-            //         // console.log('patient 6 : ',patient.name);
-            //         console.log(patient)
-            // // });
-            // for(var i=0;i<2;i++){
-            //     console.log(Patients[i])
-            // }
-            console.log('first patient : ',Patients[0])
-        }).catch(function(error){
-            console.log(error);
-        })
-       
-
         </script>
         <style>
 
