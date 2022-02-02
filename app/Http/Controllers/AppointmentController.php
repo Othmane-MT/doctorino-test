@@ -135,6 +135,12 @@ class AppointmentController extends Controller
 		return view('appointment.all', ['appointments' => $appointments]);
 	}
 
+    public function AppointmentApi(Request $request){
+        $appointments=Appointment::all();
+
+        session()->put("data",$appointments);
+    }
+
 
     public function destroy($id){
 

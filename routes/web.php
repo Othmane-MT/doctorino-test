@@ -1,8 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\FullCalenderController;
-
+use App\Http\Controllers\API\AppointmentsApi;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,9 +32,9 @@ Route::get('/patient/view/{id}', 'PatientController@view')->where('id', '[0-9]+'
 Route::get('/patient/edit/{id}', 'PatientController@edit')->where('id', '[0-9]+')->name('patient.edit');
 Route::post('/patient/edit', 'PatientController@store_edit')->name('patient.store_edit');
 
-//Doctor
-Route::get('/doctor/edit/{id}', 'DoctorController@create')->where('id', '[0-9]+')->name('doctor.create');
-Route::post('/doctor/create', 'DoctorController@store')->name('doctor.store');
+// //Doctor
+// Route::get('/doctor/edit/{id}', 'DoctorController@create')->where('id', '[0-9]+')->name('doctor.create');
+// Route::post('/doctor/create', 'DoctorController@store')->name('doctor.store');
 
 //Appointments
 Route::get('/appointment/create', 'AppointmentController@create')->name('appointment.create');
@@ -48,8 +47,9 @@ Route::post('/appointment/edit', 'AppointmentController@store_edit')->name('appo
 
 // Appointments api 
 
+// Route::get('/appointment/api','AppointmentController@AppointmentApi');
 
-
+Route::get('appointment/api',[AppointmentsApi::class,'index']);
 
 
 //Drugs
