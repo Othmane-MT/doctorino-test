@@ -121,9 +121,32 @@
                                             alert('Clicked On : '+ info.dateStr);
                                         },
                                         
-                                        eventClick:function(info){
-                                            // to Delete an appointment
-                                           window.location.href='/appointment/view/'+info.event.id
+                                        eventClick:async function(info){
+                                        //    display appointment info
+                                        //   Pop Up
+                                            
+                                            
+                                        const URL='/appointment/'+info.event.id;
+                                           const res =await axios.get(URL).then(function(response){
+                                                var modal = document.getElementById("myModal");
+                                                var name=document.getElementById('Patient_Name');
+                                                var Dt=document.getElementById('Appointment_Date');
+                                                var time_start=document.getElementById('Appointment_Start');
+                                                var time_End=document.getElementById('Appointment_End');
+                                                const Appointment=response.data.appointment;
+                                                const Patient=response.data.patient;
+                                                modal.style.display = "block";
+                                                console.log(Patient);
+                                                
+                                                name.innerText=Patient.name;
+                                                Dt.innerText=Appointment.date.split('T')[0];
+                                                time_start.innerText=Appointment.time_start;
+                                                time_End.innerText=Appointment.time_end;
+                                            }).catch(function(error){
+                                                console.log("ERROR: ",error);
+                                            });
+                                            
+                                            
                                         },
                                         nowIndicator: true,
                                         dayMaxEvents: true, // allow "more" link when too many events
@@ -144,6 +167,26 @@
 
            
         });
+        </script>
+        <script>
+            function closeMod(){
+                var modal = document.getElementById("myModal");
+                 modal.style.display = "none";
+            }
+
+             // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function(event) {
+                var modal = document.getElementById("myModal");
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }              
+           
+            
+
+           
+
+
         </script>
         <style>
 

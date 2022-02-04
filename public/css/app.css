@@ -18994,6 +18994,70 @@ footer {
     outline: none;
     border: none;
 }
-.fc-daygrid-event {
+.fc-daygrid-event,
+.fc-timegrid-event,
+.fc-v-event,
+.fc-list-event {
     cursor: pointer !important ;
 }
+
+/* Modal  */
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+    backdrop-filter: blur(8px);
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    border-radius: 20px;
+}
+
+.modal_header {
+    width: 100%;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+    margin-bottom: 15px;
+}
+.modal_header > h2 {
+    color: black;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+.modal_body {
+    padding: 12px;
+}
+.Patient_Info {
+    display: flex;
+}
+
+.modal_footer {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid rgba(0, 0, 0, 0.6);
+    padding-top: 10px;
+}
+
+/* The Close Button */
+
+/* Modal End */

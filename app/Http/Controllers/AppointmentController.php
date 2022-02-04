@@ -22,10 +22,16 @@ class AppointmentController extends Controller
     //  the create function returns the appointment's create page with the list of patients
 
     public function index($id){
-        $appointment=Appointment::all()->where('user_id',$id);
-        $Patient=User::all()->where('role','patient')->where('id',$id);
-        return view('appointment.view',['patient'=>$Patient,'appointment'=>$appointment]);
+
+        $appointment=Appointment::all()->where('id',$id);
+        $Patient=User::all()->where('role','patient')->where('id',$appointment[0]->user_id);
+
+
+        return view('appointment.view',['patient'=>$Patient,'appointment'=>$appointment[0]]);
+
     }
+
+
     public function create(Request $request){
 
         $patients = User::where('role','patient')->get();

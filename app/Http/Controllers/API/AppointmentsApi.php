@@ -21,6 +21,13 @@ class AppointmentsApi extends Controller
         return response()->json(['appointments'=>$appointments,'patients'=>$patient]);
     }
 
+    public function view($id){
+         $appointment=Appointment::all()->where('id',$id);
+        $Patient=User::all()->where('role','patient')->where('id',$appointment[0]->user_id);
+        
+        return response()->json(['appointment'=>$appointment[0],"patient"=>$Patient[1]]);
+    }
+
     /**
      * Store a newly created resource in storage.
      *

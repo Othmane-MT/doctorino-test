@@ -74,6 +74,71 @@
       </div>
    </div>
 </div>
+<!-- The Modal -->
+<div id="myModal" class="modal">
+  <!-- Modal content -->
+  <div class="modal-content">
+
+         <div class="modal_header">
+            <h2>
+               {{ __('sentence.Appointment') }}
+            </h2>
+         </div>
+         <div class="modal_body">
+            <div class="Patient_Info">
+               <div class="Patient_Info_Logo">
+                  <i class="fas fa-user" ></i>
+               </div>
+               <div class="Patient_Info_Name" id="Patient_Name"></div>
+               <div class="Patient_Info_Age"></div>
+            </div>
+            <div class="Date_info">
+               <div class="Date_Logo"></div>
+               <div class="Date" >
+                  <strong>
+                     Date : 
+                  </strong>
+                  <div id="Appointment_Date">
+
+                  </div>
+               </div>
+            </div>
+            <div class="From">
+               <div class="From_Logo"></div>
+               <div class="From">
+                  <strong>From -> </strong>
+                  <div  id="Appointment_Start">
+
+                  </div>
+               </div>
+            </div>
+            <div class="To">
+               <div class="To_Logo"></div>
+               <div class="To"> 
+                  <strong>To -> </strong>
+                  <div id="Appointment_End">
+
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="modal_footer">
+            <div class="btn-left" >
+               <button class="btn btn-dark" onclick="closeMod()" > Close </button>
+            </div>
+               <div class="btn-right" >
+               <button class="btn btn-danger" id='modal_btn_delete' > <i class="fas fa-trash-alt" ></i>  delete </button>
+               <button class="btn btn-warning" id="modal_btn_edit" > <i class="fas fa-pen"></i> edit </button>
+            </div>
+         </div>
+         
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
 @endsection
 
 @section('header')

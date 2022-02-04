@@ -9,7 +9,8 @@ return [
   'All Patients' => 'Tous les patients',
   'Prescriptions' => 'Ordonnances',
   'Prescription' => 'Ordonnance',
-
+   'From'=>'De',
+   'To'=>'a',
   'New Prescription' => 'Nouvelle Ordonnance',
   'All Prescriptions' => 'Toutes les Ordonnances',
   'Create Prescription' => 'Créer l\'ordonnance',

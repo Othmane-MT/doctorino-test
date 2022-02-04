@@ -22,7 +22,8 @@ return [
   'View Prescription' => 'View Prescription',
   'No Test Required' => 'No Test Required',
   'No Drugs' => 'No Drugs',
-
+  'From'=>'From',
+   'To'=>'To',
   'Drugs' => 'Drugs',
   'Add Drug' => 'Add Drug',
   'All Drugs' => 'All Drugs',
