@@ -127,21 +127,35 @@
                                             
                                             
                                         const URL='/appointment/'+info.event.id;
-                                           const res =await axios.get(URL).then(function(response){
+                                           const res =await axios(URL).then(function(response){
+                                               var d=new Date();
+                                               const currentYear=d.getFullYear();
                                                 var modal = document.getElementById("myModal");
                                                 var name=document.getElementById('Patient_Name');
                                                 var Dt=document.getElementById('Appointment_Date');
                                                 var time_start=document.getElementById('Appointment_Start');
                                                 var time_End=document.getElementById('Appointment_End');
+                                                var age=document.getElementById('Patient_Age');
+                                                var id=document.getElementById('appointment_id');
+                                                var rdv_id=document.getElementById('rdv_id');
+                                                var rdv_id2=document.getElementById('rdv_id2');
+                                                
+
+
                                                 const Appointment=response.data.appointment;
+                                                rdv_id.Value=Appointment.id;
+                                                rdv_id2.Value=Appointment.id;
                                                 const Patient=response.data.patient;
+                                                const info=response.data.info;
                                                 modal.style.display = "block";
-                                                console.log(Patient);
                                                 
                                                 name.innerText=Patient.name;
-                                                Dt.innerText=Appointment.date.split('T')[0];
-                                                time_start.innerText=Appointment.time_start;
-                                                time_End.innerText=Appointment.time_end;
+                                                Dt.value=Appointment.date.split('T')[0];
+                                                time_start.value=Appointment.time_start;
+                                                time_End.value=Appointment.time_end;
+                                                var AGE=currentYear-info.birthday.split('/')[2];
+                                                age.innerText=AGE;
+                                                id.value=Appointment.id;
                                             }).catch(function(error){
                                                 console.log("ERROR: ",error);
                                             });

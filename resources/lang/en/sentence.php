@@ -35,7 +35,10 @@ return [
   'Drug Edited Successfully' => 'Drug Edited Successfully',
   'Drug Deleted Successfully' => 'Drug Deleted Successfully',
 
+  'Edit'=>'Edit',
+  'Delete'=>'Delete',
 
+  'year'=>'year',
   'Tests list' => 'Tests list',
   'Patient informations' => 'Patient informations',
   'Billing' => 'Billing',

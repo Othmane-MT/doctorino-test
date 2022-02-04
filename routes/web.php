@@ -43,14 +43,16 @@ Route::put('/appointment/create/{patient}', 'AppointmentController@redi')->name(
 Route::post('/appointment/create', 'AppointmentController@store')->name('appointment.store');
 Route::get('/appointment/all', 'AppointmentController@all')->name('appointment.all');
 Route::get('/appointment/checkslots/{id}','AppointmentController@checkslots')->where('id', '[0-9]+');
-Route::get('/appointment/delete/{id}','AppointmentController@destroy')->where('id', '[0-9]+');
+Route::post('/appointment/delete/','AppointmentController@destroy')->name('appointment.delete');
+
 Route::post('/appointment/edit', 'AppointmentController@store_edit')->name('appointment.store_edit');
+Route::post('/appointment/status_edit', 'AppointmentController@Status_edit')->name('appointment.Status_edit');
 
 // Appointments api 
 Route::get('appointment/api',[AppointmentsApi::class,'index']);
 //Appointment modal api
 
-Route::get('appointment/{id}',[AppointmentsApi::class,'view']);
+Route::get('/appointment/{id}',[AppointmentsApi::class,'view']);
 
 // Patient API
 Route::get('patients/api',[PatientsApi::class,'index']);

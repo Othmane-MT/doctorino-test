@@ -129,6 +129,25 @@ class AppointmentController extends Controller
     public function store_edit(Request $request){
 
         $validatedData = $request->validate([
+            'appointment_id' => ['required','exists:appointments,id'],
+            'Appointment_Date'=>['required'],
+            'Appointment_Start'=>['required'],
+            'Appointment_End'=>['required']
+        ]);
+
+        $appointment = Appointment::findOrFail($request->appointment_id);
+        $appointment->date = $request->Appointment_Date;
+        $appointment->time_start = $request->Appointment_Start;
+        $appointment->time_end = $request->Appointment_End;
+        $appointment->save();
+
+        return Redirect::back()->with('success', 'Appointment Updated Successfully!');
+    }
+
+
+
+    public function Status_edit(Request $request){
+       $validatedData = $request->validate([
             'rdv_id' => ['required','exists:appointments,id'],
             'rdv_status' => ['required','numeric'],
         ]);
@@ -153,8 +172,8 @@ class AppointmentController extends Controller
     }
 
 
-    public function destroy($id){
-
+    public function destroy(Request $request){
+        $id=$request->all()['appointment_id'];
         Appointment::destroy($id);
         return Redirect::route('appointment.all')->with('success', 'Appointment Deleted Successfully!');
 

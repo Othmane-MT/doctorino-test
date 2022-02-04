@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Appointment;
+use App\Patient;
 use App\User;
 
 class AppointmentsApi extends Controller
@@ -22,10 +23,10 @@ class AppointmentsApi extends Controller
     }
 
     public function view($id){
-         $appointment=Appointment::all()->where('id',$id);
-        $Patient=User::all()->where('role','patient')->where('id',$appointment[0]->user_id);
-        
-        return response()->json(['appointment'=>$appointment[0],"patient"=>$Patient[1]]);
+         $appointment=Appointment::find($id);
+        $Patient=User::where('role','patient')->where('id',$appointment->user_id)->first();
+        $info=Patient::where('user_id',$appointment->user_id)->first();
+        return response()->json(['appointment'=>$appointment,"patient"=>$Patient,'info'=>$info]);
     }
 
     /**

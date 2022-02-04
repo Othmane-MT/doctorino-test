@@ -19008,7 +19008,7 @@ footer {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
+    padding-top: 0; /* Location of the box */
     left: 0;
     top: 0;
     width: 100%; /* Full width */
@@ -19021,11 +19021,12 @@ footer {
 
 /* Modal Content */
 .modal-content {
+    margin-top: 0;
     background-color: #fefefe;
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%;
+    width: 70%;
     border-radius: 20px;
 }
 
@@ -19045,17 +19046,111 @@ footer {
 }
 .modal_body {
     padding: 12px;
+    overflow: auto;
+}
+.modal_body > div > div > input,
+.Type > select {
+    padding: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    border-radius: 20px;
+    max-width: 200px !important ;
+    text-align: center !important ;
 }
 .Patient_Info {
     display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+    flex-wrap: wrap;
+}
+@media (max-width: 768px) {
+    .Date_Info,
+    .From_Info,
+    .To_Info,
+    .Type-info {
+        flex-direction: column !important;
+        padding-bottom: 10px;
+    }
+    .Patient_Info {
+        flex-direction: column;
+    }
+    .Date {
+        flex-direction: column;
+    }
+    .Date > input {
+        width: 150px !important;
+    }
+    .Date_Logo {
+        height: 30px;
+    }
+    .modal_footer {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .btn-left {
+        margin: 10px;
+    }
 }
 
+.modal_logos {
+    width: 35px;
+    height: 35px;
+    padding: 8px;
+    background-color: rgba(0, 0, 0, 0.15);
+    color: #000;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.Date,
+.From,
+.To,
+.Type {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 5px;
+}
+.Date > strong,
+.From > strong,
+.To > strong,
+.Type > strong {
+    margin-right: 50px;
+}
+.modal_body > div {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    padding: 20px;
+}
 .modal_footer {
     width: 100%;
     display: flex;
     justify-content: space-between;
     border-top: 1px solid rgba(0, 0, 0, 0.6);
     padding-top: 10px;
+}
+.modal_footer > .btn-right {
+    display: flex;
+    justify-content: space-between;
+    width: 270px;
+}
+.status_title {
+    font-size: 25px;
+    font-weight: 650;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.status_btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.Status_info {
+    display: flex;
+    flex-direction: column;
 }
 
 /* The Close Button */
